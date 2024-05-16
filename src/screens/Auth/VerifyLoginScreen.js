@@ -11,15 +11,22 @@ import CustomHeader from "../../components/CustomHeader";
 import { COLORS } from "../../constant/Constant";
 import OTPInput from "react-native-otp-forminput";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 const VerifyLoginScreen = () => {
-  const [time, setTime] = useState(20);
+  const [count, setCount] = useState(20);
+  const [activeResend, setActiveResend] = useState(false);
 
-  // useEffect(() => {
-  //   const data = setInterval(() => {
-  //     setTime(20 - 1);
-  //   }, 1000);
-  //   // return () => clearInterval(data);
-  // }, [time]);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCount((prevCount) => (prevCount > 0 ? prevCount - 1 : prevCount));
+    }, 1000); // Decrease count every second
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleOtpResend = () => {
+    count == 0 ? setCount(20) : count;
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -46,15 +53,25 @@ const VerifyLoginScreen = () => {
           />
 
           <View style={styles.base}>
-            <View style={styles.resendBtnAndIcon}>
+            <TouchableOpacity
+              style={styles.resendBtnAndIcon}
+              onPress={handleOtpResend}
+            >
               <MaterialCommunityIcons
                 name="share-circle"
                 size={24}
-                color={COLORS.GREY}
+                color={count == 0 ? "#000" : "#808080"}
               />
-              <Text style={styles.resendOtpTxt}>Resend OTP</Text>
-            </View>
-            <Text style={{ color: COLORS.BLUE, fontSize: 18 }}>{time}s</Text>
+              <Text
+                style={[
+                  styles.resendOtpTxt,
+                  { color: count == 0 ? "#000" : "#808080" },
+                ]}
+              >
+                Resend OTP
+              </Text>
+            </TouchableOpacity>
+            <Text style={{ color: COLORS.BLUE, fontSize: 18 }}>{count}s</Text>
           </View>
         </View>
       </ScrollView>
