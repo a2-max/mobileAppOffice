@@ -37,10 +37,10 @@ const RegisterScreen = () => {
       <ScrollView style={styles.main} showsVerticalScrollIndicator={false}>
         <CustomHeader title="Sign Up For Free" />
         <Text style={styles.mandatory}>
-          All fields marked with* are mandatory
+          All fields marked with * are mandatory
         </Text>
         {/* for input fields */}
-        <View style={{ marginTop: 30, paddingHorizontal: 10 }}>
+        <View style={styles.formView}>
           <CustomTextInput label="First Name*" />
           <CustomTextInput label="Last Name*" />
 
@@ -92,23 +92,30 @@ const styles = StyleSheet.create({
   },
   mandatory: {
     marginTop: 60,
-    paddingHorizontal: 10,
-    color: "blue",
+    paddingHorizontal: 20,
+    color: "#4374F4",
     fontSize: 18,
+  },
+  formView: {
+    paddingHorizontal: 20,
   },
   register: {
     width: "100%",
-    height: 50,
+    height: 60,
     backgroundColor: "gray",
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 100,
+    marginTop: 50,
     marginBottom: 40,
   },
-  title: { color: "white", fontSize: 20, fontWeight: "bold" },
+  title: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+  },
   term: {
-    color: "skyblue",
+    color: "#4374F4",
     fontSize: 20,
     fontWeight: "bold",
     marginRight: 10,
@@ -119,8 +126,15 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 0.4,
     borderColor: "black",
+    marginTop: 24,
   },
-  click: { fontSize: 20, fontWeight: "bold", marginRight: 10 },
+  click: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginRight: 10,
+    marginTop: 24,
+    color: "#353535",
+  },
 });
 
 export default RegisterScreen;

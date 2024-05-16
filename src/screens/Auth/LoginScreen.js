@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Platform,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import CustomHeader from "../../components/CustomHeader";
@@ -51,8 +52,8 @@ const styles = StyleSheet.create({
     marginTop: Platform.OS === "android" && 40,
     backgroundColor: "#fff",
   },
-  box: { paddingHorizontal: 10, marginTop: 60 },
-  otp: { color: COLORS.BLUE, fontSize: 15, marginTop: 20 },
+  box: { paddingHorizontal: 24, marginTop: 60 },
+  otp: { color: COLORS.BLUE, fontSize: 15, marginTop: 30 },
   enter: { marginTop: 7, fontSize: 17, marginBottom: 20 },
   address: { fontSize: 25, fontWeight: "bold" },
 });

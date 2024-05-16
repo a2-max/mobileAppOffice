@@ -1,4 +1,11 @@
-import { View, Text, Modal, Pressable, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Modal,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { Entypo } from "@expo/vector-icons";
 import { COLORS } from "../constant/Constant";
@@ -16,33 +23,10 @@ const TermandConditon = ({ show, closingModel }) => {
   }, [scrolling]);
   return (
     <Modal transparent visible={show} animationType="slide">
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "rgba(255, 255, 255, 0.948)",
-        }}
-      >
-        <View
-          style={{
-            width: "80%",
-            height: "50%",
-            backgroundColor: "white",
-            elevation: 5,
-            borderRadius: 20,
-          }}
-        >
-          <View
-            style={{
-              padding: 10,
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}
-          >
-            <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-              Terms & Conditions
-            </Text>
+      <View style={styles.mainWrapper}>
+        <View style={styles.popupBox}>
+          <View style={styles.headerWrapper}>
+            <Text style={styles.headingTxt}>Terms & Conditions</Text>
             <Entypo
               onPress={closingModel}
               name="cross"
@@ -57,14 +41,7 @@ const TermandConditon = ({ show, closingModel }) => {
             indicatorStyle="white"
             style={{ padding: 10, fontSize: 17 }}
           >
-            <Text
-              style={{
-                fontSize: 17,
-                marginTop: 5,
-                color: "blue",
-                fontWeight: "600",
-              }}
-            >
+            <Text style={styles.infoTxt}>
               Please read the full terms and conditions to continue
             </Text>
             <Text>
@@ -158,17 +135,10 @@ const TermandConditon = ({ show, closingModel }) => {
           <Pressable
             disabled={disable}
             onPress={closingModel}
-            style={{
-              position: "absolute",
-              bottom: 0,
-              height: 60,
-              backgroundColor: disable == true ? COLORS.GREY : COLORS.BLUE,
-              width: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-              borderBottomLeftRadius: 20,
-              borderBottomRightRadius: 20,
-            }}
+            style={[
+              styles.acceptBtn,
+              { backgroundColor: disable == true ? COLORS.GREY : COLORS.BLUE },
+            ]}
           >
             <Text style={{ fontSize: 18, fontWeight: "bold", color: "white" }}>
               I Accept
@@ -179,5 +149,50 @@ const TermandConditon = ({ show, closingModel }) => {
     </Modal>
   );
 };
+
+const styles = StyleSheet.create({
+  mainWrapper: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.948)",
+  },
+  headerWrapper: {
+    padding: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    backgroundColor: "#fafafa",
+    borderTopLeftRadius: 10,
+    borderTopEndRadius: 10,
+  },
+  headingTxt: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  popupBox: {
+    width: "85%",
+    height: "50%",
+    backgroundColor: "white",
+    elevation: 5,
+    borderRadius: 20,
+  },
+  infoTxt: {
+    fontSize: 17,
+    marginTop: 5,
+    marginBottom: 20,
+    color: "#4374f4",
+    fontWeight: "600",
+  },
+  acceptBtn: {
+    position: "absolute",
+    bottom: 0,
+    height: 60,
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+});
 
 export default TermandConditon;

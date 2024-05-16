@@ -15,6 +15,7 @@ const AppNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{ headerShown: false, animation: "slide_from_right" }}
+        initialRouteName="SplashScreen"
       >
         <Stack.Screen name="splash" component={SplashScreen} />
         <Stack.Screen name="face" component={FaceScreen} />

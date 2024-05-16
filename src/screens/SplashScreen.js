@@ -1,6 +1,8 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React, { useEffect } from "react";
 import { useNavigation, StackActions } from "@react-navigation/native";
+import Logo from "../Images/logo.png";
+import { COLORS } from "../constant/Constant";
 
 const SplashScreen = () => {
   const navigation = useNavigation();
@@ -11,7 +13,7 @@ const SplashScreen = () => {
   }, []);
   return (
     <View style={styles.main}>
-      <Text>SplashScreen</Text>
+      <Image source={Logo} />
     </View>
   );
 };
@@ -21,6 +23,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: COLORS.SPLASHBG,
   },
 });
 

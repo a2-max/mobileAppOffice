@@ -4,14 +4,8 @@ import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
 const data = [
-  { label: "Item 1", value: "1" },
-  { label: "Item 2", value: "2" },
-  { label: "Item 3", value: "3" },
-  { label: "Item 4", value: "4" },
-  { label: "Item 5", value: "5" },
-  { label: "Item 6", value: "6" },
-  { label: "Item 7", value: "7" },
-  { label: "Item 8", value: "8" },
+  { label: "Parent", value: "1" },
+  { label: "Guardian", value: "2" },
 ];
 
 const DropdownComponent = () => {
@@ -24,10 +18,10 @@ const DropdownComponent = () => {
         <Text
           style={[
             styles.label,
-            isFocus && { color: "blue", backgroundColor: "white" },
+            isFocus && { marginTop: 20, marginLeft: -10, color: "#6e6e6e" },
           ]}
         >
-          Dropdown label
+          Role
         </Text>
       );
     }
@@ -38,7 +32,7 @@ const DropdownComponent = () => {
     <View style={styles.container}>
       {renderLabel()}
       <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
+        style={[styles.dropdown, isFocus && { borderColor: "#cacaca" }]}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
@@ -48,7 +42,7 @@ const DropdownComponent = () => {
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={!isFocus ? "Select item" : "..."}
+        placeholder={!isFocus ? "Select Role" : "..."}
         searchPlaceholder="Search..."
         value={value}
         onFocus={() => setIsFocus(true)}
@@ -73,10 +67,11 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     height: 60,
-    borderColor: "gray",
+    borderColor: "#cacaca",
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
+    marginTop: 24,
   },
   icon: {
     marginRight: 5,
@@ -92,6 +87,8 @@ const styles = StyleSheet.create({
   },
   placeholderStyle: {
     fontSize: 16,
+    color: "#353535",
+    marginLeft: 10,
   },
   selectedTextStyle: {
     fontSize: 16,

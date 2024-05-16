@@ -14,14 +14,13 @@ const CustomTextInput = ({ label }) => {
       activeOutlineColor="gray"
       style={{
         fontSize: 18,
-        fontWeight: "bold",
-        color: "gray",
+        color: "#353535",
         height: 60,
         backgroundColor: "#fff",
-        marginTop: 10,
+        marginTop: 24,
       }}
       outlineStyle={{
-        borderColor: "gray",
+        borderColor: "#cacaca",
         borderWidth: 1,
       }}
     />
