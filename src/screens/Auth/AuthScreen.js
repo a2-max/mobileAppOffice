@@ -9,7 +9,7 @@ import {
   Pressable,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Animated, {
@@ -18,11 +18,47 @@ import Animated, {
   FadeInUp,
 } from "react-native-reanimated";
 import { COLORS } from "../../constant/Constant";
+import blueImg from "../../Images/blueScreenImg.png";
 import RedImg from "../../Images/redScreenImg.png";
+import greenImg from "../../Images/greenScreenImg.png";
 
 const ImageComponent = Animated.createAnimatedComponent(Image);
+
 const AuthScreen = () => {
   const navigation = useNavigation();
+  // changing image text and background color
+  const [img, setImg] = useState("");
+  const [txt, setTxt] = useState("");
+  const [bg, setBg] = useState("");
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     // Code for changing content
+  //     for (let i = 0; i < 3; i++) {
+  //       setImg(screenData[i].img);
+  //       setTxt(screenData[i].txt);
+  //       setBg(screenData[i].bgcolor);
+  //     }
+  //   }, 3000);
+  // }, [3000]);
+
+  const screenData = [
+    {
+      img: blueImg,
+      txt: "Empower Your Child' with college-ready portfolios",
+      bgcolor: "#4374F4",
+    },
+    {
+      img: RedImg,
+      txt: "Track and celebrate every educational milestone",
+      bgcolor: "#F37C54",
+    },
+    {
+      img: greenImg,
+      txt: "Share your child's educational journey",
+      bgcolor: "#7DC8C2",
+    },
+  ];
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <SafeAreaView style={styles.main}>
@@ -35,16 +71,19 @@ const AuthScreen = () => {
           entering={FadeInRight.delay(500).springify()}
           style={styles.info}
         >
-          Empower your child' with
+          Track and celebrate every
         </Animated.Text>
         <Animated.Text entering={FadeInRight.delay(600)} style={styles.info}>
-          college-ready portfolios
+          educational milestone
         </Animated.Text>
         <Animated.View
           entering={FadeInUp.delay(800).springify().stiffness(10)}
-          style={styles.box}
+          style={[styles.box, { backgroundColor: COLORS.ORANDE }]}
         >
-          <TouchableOpacity style={styles.signupfree}>
+          <TouchableOpacity
+            style={styles.signupfree}
+            onPress={() => navigation.navigate("register")}
+          >
             <Text style={{ fontSize: 20, fontWeight: "900" }}>
               Sign Up For Free
             </Text>
@@ -77,10 +116,10 @@ const AuthScreen = () => {
             <Text style={styles.continuetext}>Continue With Apple</Text>
           </TouchableOpacity>
           <View style={styles.last}>
-            <Pressable onPress={() => navigation.navigate("register")}>
+            <Pressable onPress={() => navigation.navigate("login")}>
               <Text style={styles.login}>Login With Email</Text>
             </Pressable>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("face")}>
               <Image
                 style={styles.face}
                 source={require("../../Images/face.png")}

@@ -6,6 +6,7 @@ export const COLORS = {
   YELLOW: "#FDD45D",
   ORANDE: "#F37C54",
   SPLASHBG: "#FFF6E7",
+  RED: "#f00000",
 };
 
 export const IMAGES = {};

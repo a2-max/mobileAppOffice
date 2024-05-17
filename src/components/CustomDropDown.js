@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { COLORS } from "../constant/Constant";
 
 const data = [
-  { label: "Parent", value: "1" },
-  { label: "Guardian", value: "2" },
+  { label: "Parent", value: "parent" },
+  { label: "Guardian", value: "guardian" },
 ];
 
-const DropdownComponent = () => {
+const DropdownComponent = ({ label, error, handleRole, onSelect }) => {
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 
@@ -18,10 +19,10 @@ const DropdownComponent = () => {
         <Text
           style={[
             styles.label,
-            isFocus && { marginTop: 20, marginLeft: -10, color: "#6e6e6e" },
+            isFocus && { marginTop: 20, marginLeft: -10, color: COLORS.BLUE },
           ]}
         >
-          Role
+          {label}
         </Text>
       );
     }
@@ -32,17 +33,20 @@ const DropdownComponent = () => {
     <View style={styles.container}>
       {renderLabel()}
       <Dropdown
-        style={[styles.dropdown, isFocus && { borderColor: "#cacaca" }]}
+        style={[
+          styles.dropdown,
+          { borderColor: error ? "#f00000" : "#cacaca" },
+        ]}
         placeholderStyle={styles.placeholderStyle}
         selectedTextStyle={styles.selectedTextStyle}
         inputSearchStyle={styles.inputSearchStyle}
         iconStyle={styles.iconStyle}
         data={data}
-        search
+        // search
         maxHeight={300}
         labelField="label"
         valueField="value"
-        placeholder={!isFocus ? "Select Role" : "..."}
+        placeholder={!isFocus ? "Select Role*" : "..."}
         searchPlaceholder="Search..."
         value={value}
         onFocus={() => setIsFocus(true)}
@@ -50,6 +54,9 @@ const DropdownComponent = () => {
         onChange={(item) => {
           setValue(item.value);
           setIsFocus(false);
+          // handleRole;
+          // console.log(value);
+          onSelect(item.value);
         }}
       />
     </View>
@@ -68,10 +75,11 @@ const styles = StyleSheet.create({
   dropdown: {
     height: 60,
     borderColor: "#cacaca",
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 8,
     marginTop: 24,
+    marginBottom: 20,
   },
   icon: {
     marginRight: 5,
